@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('trailers', function (Blueprint $table) {
+            $table->id();
+            $table->string('numero');
+            $table->unsignedBigInteger('trailertype_id')->default(1);
+            $table->foreign('trailertype_id')->references('id')->on('trailer_types');
+            $table->string('volum')->default(200);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
+};
